@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import Form from "./components/Form";
+import ContactsList from "./components/ContactsList";
+import Filter from "./components/Filter";
+import actionsOperations from "./redux/phonebook/phonebook-operations";
 
-function App() {
+import "./App.css";
+
+const Phonebook = () => {
+  const filter = useSelector((state) => state.counter.filter);
+  const contacts = useSelector((state) => state.counter.items);
+  const dispatch = useDispatch();
+  const normalizedFilter = filter.toLowerCase();
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(normalizedFilter)
+  );
+
+  useEffect(() => {
+    dispatch(actionsOperations.fetchContactsOperation());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="phonebook-warper">
+      <div className="phonebook-form">
+        <h1>Phonebook</h1>
+        <Form />
+      </div>
+      <div className="phonebook-contacts">
+        <h2>Contacts</h2>
+        <Filter />
+        <ContactsList contacts={filteredContacts} />
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Phonebook;
