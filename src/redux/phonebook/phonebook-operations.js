@@ -13,7 +13,7 @@ import {
 
 axios.defaults.baseURL = "https://61ba54ac48df2f0017e5aa71.mockapi.io";
 
-const fetchContactsOperation = () => (dispatch) => {
+export const fetchContactsOperation = () => (dispatch) => {
   dispatch(fetchContactsRequest());
 
   axios
@@ -22,7 +22,7 @@ const fetchContactsOperation = () => (dispatch) => {
     .catch((error) => dispatch(fetchContactsError(error)));
 };
 
-const addContactsOperation =
+export const addContactsOperation =
   ({ name, phone }) =>
   (dispatch) => {
     const contact = {
@@ -36,17 +36,11 @@ const addContactsOperation =
       .catch((error) => dispatch(addContactsError(error)));
   };
 
-const deleteContactsOperation = (id) => (dispatch) => {
+export const deleteContactsOperation = (id) => (dispatch) => {
   dispatch(deleteContactsRequest());
 
   axios
     .delete(`/contacts/${id}`)
     .then(() => dispatch(deleteContactsSuccess(id)))
     .catch((error) => dispatch(deleteContactsError(error)));
-};
-
-export default {
-  addContactsOperation,
-  deleteContactsOperation,
-  fetchContactsOperation,
 };

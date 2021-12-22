@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Form from "./components/Form";
 import ContactsList from "./components/ContactsList";
 import Filter from "./components/Filter";
-import actionsOperations from "./redux/phonebook/phonebook-operations";
+import * as actionsOperations from "./redux/phonebook/phonebook-operations";
 
 import "./App.css";
 

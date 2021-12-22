@@ -1,4 +1,4 @@
-import actionsOperations from "../../redux/phonebook/phonebook-operations";
+import * as actionsOperations from "../../redux/phonebook/phonebook-operations";
 import { connect } from "react-redux";
 import "./ContactItem.css";
 

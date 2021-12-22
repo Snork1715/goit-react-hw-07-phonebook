@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import actionsOperations from "../../redux/phonebook/phonebook-operations";
+import * as actionsOperations from "../../redux/phonebook/phonebook-operations";
 import "./Form.css";
 
 const Form = () => {
